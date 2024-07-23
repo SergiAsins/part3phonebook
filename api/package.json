@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs", //format per a backend -const -require -module.exports=function()
   "scripts": {
     "start": "node index.js",
     "build": "cd src && npm run build",

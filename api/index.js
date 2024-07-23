@@ -1,7 +1,7 @@
-import express from 'express'
-import cors from 'cors';
-import morganMiddleware from './morganMiddleware'; //it imports the middleware of morgan
-import path from 'path'
+const express = require('express')
+const cors = require('cors')
+import morganMiddleware from 'morganMiddleware.js'; //it imports the middleware of morgan
+const path = require ('path')
 const app = express();
 
 
