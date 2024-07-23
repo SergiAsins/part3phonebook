@@ -1,0 +1,19 @@
+### Get all contacts
+GET https://service-appphonebook.onrender.com/api/persons
+Accept: application/json
+
+### Delete a contact (changes the ID of the person eliminated)
+DELETE https://service-appphonebook.onrender.com/api/persons/1
+Accept: application/json
+
+### GET person with id 1
+GET https://service-appphonebook.onrender.com/api/persons/1
+
+### POST a new person
+POST https://service-appphonebook.onrender.com/api/persons
+Content-Type: application/json
+
+{
+  "name": "el mariquixufli",
+  "number": "123-4567890"
+}
