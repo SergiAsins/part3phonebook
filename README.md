@@ -1,6 +1,6 @@
 # Phonebook 
 
-This is the the Phonebook application.
+This is the the Phonebook application made for the exercises of the Part3 in the Course Full Stack Open of the Helsinki University
 
 ## Deployed Application
 
