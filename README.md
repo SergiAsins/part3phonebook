@@ -1,10 +1,11 @@
-# Phonebook Backend
+# Phonebook 
 
-This is the backend for the Phonebook application.
+This is the the Phonebook application.
 
 ## Deployed Application
 
-The backend is deployed at: [https://service-appphonebook.onrender.com/api/persons](https://service-appphonebook.onrender.com/api/persons)
+The backend is deployed at: [https://service-appphonebook.onrender.com/api/persons]
+Frontend is deployed at https://service-appphonebook.onrender.com
 
 ## Endpoints
 
