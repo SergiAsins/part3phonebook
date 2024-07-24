@@ -6,9 +6,14 @@ import path from 'path'
 import mongoose from 'mongoose'
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import dotenv from 'dotenv';
-
+dotenv.config();
 // Use environment varibales
 
+const MONGODB_URI = process.env.MONGODB_URI
+if (!MONGODB_URI) {
+    console.error('Error: La variable de entorno MONGODB_URI no está definida');
+    process.exit(1);
+  }
 
 // Define __filename and  __dirname:
 const __filename = fileURLToPath(import.meta.url);
@@ -17,10 +22,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 //connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI;
+;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado a MongoDB'))
-  .catch(err => console.error('Error al conectar a MongoDB:', err));
+  .catch(err => console.error('Error al conectar a MongoDB:', error.message));
 
 //define the schema and model of MongoDB
 const personSchema = new mongoose.Schema({
