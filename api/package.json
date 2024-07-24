@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "build": "cd ../src && npm install && npm run build",
+    "build": "cd ../dist && npm install && npm run build",
     "dev": "nodemon index.js"
   },
   "keywords": [],
