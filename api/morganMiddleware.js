@@ -1,6 +1,11 @@
-const morgan = require('morgan')
-const fs = require('fs')
-const path = require('path');
+import morgan from 'morgan';
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 //creating a personalized token which logs the body of the petition 
 morgan.token('body', (req) => {
@@ -8,11 +13,11 @@ morgan.token('body', (req) => {
 });
 
 //creating an stream for logging in a file:
-const logStream = fs.createWriteStream(path.join(__dirname, 'acces.log'), {flags: 'a'})
+const logStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 
 //configure morgan with customized format:
 const morganMiddleware = morgan(':method :url :status :res[content-length] - :response-time ms:body', {
     stream: logStream //records the file
 });
 
-module.exports = morganMiddleware;
+export default morganMiddleware;;
