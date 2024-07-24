@@ -9,13 +9,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 // Use environment varibales
 
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = 'mongodb+srv://HasanAsins:<HamdulilahNormesPaxi_5657>@clusterappphonebook.hcwfwel.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAppPhonebook'
 console.log('MONGODB_URI:', process.env.MONGODB_URI);
 if (!MONGODB_URI) {
     console.error('Error: La variable de entorno MONGODB_URI no está definida');
     process.exit(1);
   }
-  
+
 
 // Define __filename and  __dirname:
 const __filename = fileURLToPath(import.meta.url);
