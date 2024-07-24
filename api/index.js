@@ -3,12 +3,13 @@ import cors from 'cors'
 import { fileURLToPath } from 'url';
 import morganMiddleware from './morganMiddleware.js'; //it imports the middleware of morgan
 import path from 'path'
+console.log('Ruta actual:', path.resolve());
 import mongoose from 'mongoose'
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import dotenv from 'dotenv';
 dotenv.config();
-// Use environment varibales
 
+// Use environment varibales
 const MONGODB_URI = 'mongodb+srv://HasanAsins:<HamdulilahNormesPaxi_5657>@clusterappphonebook.hcwfwel.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAppPhonebook'
 console.log('MONGODB_URI:', process.env.MONGODB_URI);
 if (!MONGODB_URI) {
@@ -27,7 +28,7 @@ const app = express();
 ;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado a MongoDB'))
-  .catch(err => console.error('Error al conectar a MongoDB:', error.message));
+  .catch(err => console.error('Error al conectar a MongoDB:', err));
 
 //define the schema and model of MongoDB
 const personSchema = new mongoose.Schema({
