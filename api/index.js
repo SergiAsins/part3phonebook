@@ -3,7 +3,12 @@ import cors from 'cors'
 import { fileURLToPath } from 'url';
 import morganMiddleware from './morganMiddleware.js'; //it imports the middleware of morgan
 import path from 'path'
+import mongoose from 'mongoose'
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import dotenv from 'dotenv';
+
+// Use environment varibales
+
 
 // Define __filename and  __dirname:
 const __filename = fileURLToPath(import.meta.url);
@@ -12,7 +17,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 //connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://HasanAsins:<password>@clusterappphonebook.hcwfwel.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAppPhonebook'
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado a MongoDB'))
   .catch(err => console.error('Error al conectar a MongoDB:', err));
