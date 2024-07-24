@@ -10,10 +10,12 @@ dotenv.config();
 // Use environment varibales
 
 const MONGODB_URI = process.env.MONGODB_URI
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
 if (!MONGODB_URI) {
     console.error('Error: La variable de entorno MONGODB_URI no está definida');
     process.exit(1);
   }
+  
 
 // Define __filename and  __dirname:
 const __filename = fileURLToPath(import.meta.url);
