@@ -1,10 +1,29 @@
 import express from 'express'
 import cors from 'cors'
+import { fileURLToPath } from 'url';
 import morganMiddleware from './morganMiddleware.js'; //it imports the middleware of morgan
 import path from 'path'
+import { MongoClient, ServerApiVersion } from 'mongodb';
+
+// Define __filename and  __dirname:
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
+//connect to MongoDB
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://HasanAsins:<password>@clusterappphonebook.hcwfwel.mongodb.net/?retryWrites=true&w=majority&appName=ClusterAppPhonebook'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Conectado a MongoDB'))
+  .catch(err => console.error('Error al conectar a MongoDB:', err));
+
+//define the schema and model of MongoDB
+const personSchema = new mongoose.Schema({
+    name: String,
+    number: String,
+  });
+
+const Person = mongoose.model('Person', personSchema);
 
 const PORT = process.env.PORT || 3001
 
@@ -20,70 +39,69 @@ let persons = [
     { id: 4, name: "Mary Poppendieck", number: "39-23-6423122" }
 ]
 
-app.get('/api/persons', (req, res) => {
+// Endpoints API
+app.get('/api/persons', async (req, res) => {
+    const persons = await Person.find({});
     res.json(persons);
-})
+  });
 
-app.get('/info', (req,res) => {
-    const numberOfPersons = persons.length;
-    const currentDate = new Date ();
-    const info =`
-        <p>Phonebook has info for ${numberOfPersons} people</p>
-        <p>${currentDate}</p>
+app.get('/info', async (req, res) => {
+try {
+    const numberOfPersons = await Person.countDocuments({});
+    const currentDate = new Date();
+    const info = `
+    <p>Phonebook has info for ${numberOfPersons} people</p>
+    <p>${currentDate}</p>
     `;
     res.send(info);
-})
+} catch (error) {
+    res.status(500).send({ error: 'Error fetching information' });
+}
+});
 
-app.get('/api/persons/:id', (req,res) => {
-    const id = Number(req.params.id);
-    const person = persons.find(p => p.id === id);
+  
 
-    if(person) {
-        res.json(person);
+app.get('/api/persons/:id', async (req, res) => {
+    const person = await Person.findById(req.params.id);
+    if (person) {
+      res.json(person);
     } else {
-        res.status(404).send({ error: 'Person not found'});
+      res.status(404).send({ error: 'Person not found' });
     }
-})
+  });
 
-app.delete('/api/persons/:id', (req,res) => {
-    const id = Number(req.params.id);
-    const initialLength = persons.length;
-    persons = persons.filter(person => person.id !== id);
 
-    if (persons.length < initialLength) {
-        res.status(204).end();
-    } else {
-        res.status(404).send({ error: 'Person not found' });
-    }
-})
+app.delete('/api/persons/:id', async (req, res) => {
+await Person.findByIdAndRemove(req.params.id);
+res.status(204).end();
+});
 
-app.post('/api/persons', (req, res) => {
-    const body = req.body;
+app.post('/api/persons', async (req, res) => {
+const body = req.body;
 
-    if (!body.name || !body.number) {
-        return res.status(400).json({ error: 'Name or number is missing' });
-    }
+if (!body.name || !body.number) {
+    return res.status(400).json({ error: 'Name or number is missing' });
+}
 
-    const nameExists = persons.some(person => person.name === body.name);
-    if (nameExists) {
-        return res.status(400).json ({ error: 'Name must be unique' });
-    }
+const nameExists = await Person.findOne({ name: body.name });
+if (nameExists) {
+    return res.status(400).json({ error: 'Name must be unique' });
+}
 
-    const id = Math.floor(Math.random() * 10000);
-    const newPerson = {
-        id: id,
-        name: body.name,
-        number: body.number
-    };
+const newPerson = new Person({
+    name: body.name,
+    number: body.number
+});
 
-    persons = persons.concat(newPerson);
-    res.json(newPerson);
+const savedPerson = await newPerson.save();
+res.json(savedPerson);
 });
 
 //Serve the frontend for any other routes not managed by the API
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist'), 'index.html')
 }) 
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
