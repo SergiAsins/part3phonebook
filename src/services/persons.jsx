@@ -1,7 +1,7 @@
 //axios enables petitions
 import axios from 'axios';
 // URL base en tu frontend
-const baseUrl = 'https://service-part3phonebook.onrender.com/api/persons'
+const baseUrl = 'https://part3phonebook-s0k3.onrender.com/api/persons'
 
 const getAll = () => {
     const request = axios.get(baseUrl)
