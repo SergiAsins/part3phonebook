@@ -5,7 +5,7 @@ import morganMiddleware from './morganMiddleware.js'; //it imports the middlewar
 import path from 'path'
 console.log('Ruta actual:', path.resolve());
 import mongoose from 'mongoose'
-import { MongoClient, ServerApiVersion } from 'mongodb';
+//import mongodb from 'mongodb';
 import dotenv from 'dotenv';
 dotenv.config();
 

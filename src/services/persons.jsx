@@ -1,4 +1,6 @@
+//axios enables petitions
 import axios from 'axios';
+// URL base en tu frontend
 const baseUrl = 'http://localhost:3001/api/persons/'; //"https://service-appphonebook.onrender.com/api/persons"
 
 const getAll = () => {
