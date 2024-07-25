@@ -4,12 +4,12 @@ This is the the Phonebook application made for the exercises of the Part3 in the
 
 ## Deployed Application
 
-The backend is deployed at: [https://service-appphonebook.onrender.com/api/persons]
-Frontend is deployed at https://service-appphonebook.onrender.com
+The backend is deployed at: [https://part3phonebook-s0k3.onrender.com/api/persons]
+Frontend is deployed at https://part3phonebook-s0k3.onrender.com/
 
 ## Endpoints
 
-- GET `https://service-appphonebook.onrender.com/api/persons`: Get all persons
-- GET `https://service-appphonebook.onrender.com/api/persons/:id`: Get a person by ID
-- POST `https://service-appphonebook.onrender.com/api/persons/persons`: Add a new person
-- DELETE `https://service-appphonebook.onrender.com/api/persons/:id`: Delete a person by ID
+- GET `https://part3phonebook-s0k3.onrender.com/api/persons`: Get all persons
+- GET `https://part3phonebook-s0k3.onrender.com/api/persons/:id`: Get a person by ID
+- POST `https://part3phonebook-s0k3.onrender.com/api/persons`: Add a new person
+- DELETE `https://part3phonebook-s0k3.onrender.com/api/persons/:id`: Delete a person by ID
