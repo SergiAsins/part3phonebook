@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Person = ({ person, deletePerson }) => (
+//handleDelete aavns era personDelete
+const Person = ({ person, handleDelete }) => (
   <li>
    {person.name} {person.number}
-  <button onClick={() => deletePerson(person.id)}> delete </button>
+  <button onClick={() => handleDelete(person.id)}> delete </button>
   </li>
 )
 
