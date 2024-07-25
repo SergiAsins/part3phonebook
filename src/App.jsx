@@ -79,8 +79,7 @@ const App = () => {
   const deletePerson = (id) => {
     const person = allPersons.find(person => person.id === id)
     if (person && window.confirm(`Delete ${person.name} ?`)) {
-      personService
-        .remove(id)
+      personService.remove(id)
         .then(() => {
           setAllPersons(allPersons.filter(person => person.id !== id))
           setPersons(allPersons.filter(person => person.id !== id))
@@ -97,6 +96,26 @@ const App = () => {
         })
     }
   }
+
+  // En el componente donde renderizas los contactos
+const handleDelete = (id) => {
+  if (window.confirm(`Do you really want to delete this contact?`)) {
+      persons.remove(id)
+          .then(response => {
+              setPersons(persons.filter(person => person.id !== id));
+          })
+          .catch(error => {
+              console.error('Error deleting contact:', error);
+          });
+  }
+};
+
+{persons.map(person => 
+  <div key={person.id}>
+      {person.name} {person.number} 
+      <button onClick={() => handleDelete(person.id)}>delete</button>
+  </div>
+)}
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
