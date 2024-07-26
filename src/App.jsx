@@ -76,7 +76,6 @@ const App = () => {
     }
   }
 
-/* old 
 const deletePerson = (id) => {
     const person = allPersons.find(person => person.id === id)
     if (person && window.confirm(`Delete ${person.name} ?`)) {
@@ -96,9 +95,9 @@ const deletePerson = (id) => {
           }, 5000)
         })
     }
-  }   */
+  }
 
-  //  el componente donde renderizas los contactos
+  // En el componente donde renderizas los contactos
 const handleDelete = (id) => {
   if (window.confirm(`Do you really want to delete this contact?`)) {
       persons.remove(id)
